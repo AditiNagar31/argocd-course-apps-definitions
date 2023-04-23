@@ -34,8 +34,8 @@ metadata:
       destination:
         name: '{{name}}'
         namespace: argocd
-  syncPolicy:
-    preserveResourcesOnDeletion: true
+    syncPolicy:
+      preserveResourcesOnDeletion: true
     # spec:
     #   project: default
     #   source:
