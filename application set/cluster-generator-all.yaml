@@ -15,16 +15,16 @@ metadata:
 #         cluster: local-cluster
 #         owner: nobody
 #         parent: release-name
-spec:
-  generators:
-  - clusters:
-      selector:
-        matchLabels:
-          stage: dev
-        matchExpressions:
-        - key: type
-          operator: In
-          values: ["none"]
+  spec:
+    generators:
+    - clusters:
+        selector:
+          matchLabels:
+            stage: dev
+          matchExpressions:
+          - key: type
+            operator: In
+            values: ["none"]
     spec:
       project: default
       source:
