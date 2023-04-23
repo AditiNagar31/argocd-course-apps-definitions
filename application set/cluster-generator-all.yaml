@@ -12,18 +12,29 @@ spec:
       namespace: argocd
       labels:
         app: any
-        cluster: '{{name}}'
+        cluster: local-cluster
         owner: nobody
         parent: release-name
     spec:
       project: default
       source:
-        repoURL: https://github.com/AditiNagar31/argocd-example-apps.git
+        repoURL: https://github.com/wreed4/example-helm
         targetRevision: master
-        path: guestbook
+        path: .
       destination:
-        server: '{{server}}'
-        namespace: guestbook-1
-      syncPolicy:
-         syncOptions:
-          - CreateNamespace=true
+        name: '{{name}}'
+        namespace: argocd
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+    # spec:
+    #   project: default
+    #   source:
+    #     repoURL: https://github.com/AditiNagar31/argocd-example-apps.git
+    #     targetRevision: master
+    #     path: guestbook
+    #   destination:
+    #     server: '{{server}}'
+    #     namespace: guestbook-1
+    #   syncPolicy:
+    #      syncOptions:
+    #       - CreateNamespace=true
