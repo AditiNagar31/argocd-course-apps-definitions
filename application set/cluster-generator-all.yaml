@@ -2,14 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: guestbook-1
-  namespace: argocd
+  namespace: argocd-test
 spec:
   generators:
   - clusters: {}
   template:
     metadata:
       name: '{{name}}-release-name'
-      namespace: testing
+      namespace: argocd-test
       labels:
         app: any
         cluster: local-cluster
