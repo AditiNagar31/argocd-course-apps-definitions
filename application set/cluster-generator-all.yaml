@@ -8,8 +8,13 @@ spec:
   - clusters: {}
   template:
     metadata:
-      name: '{{name}}-guestbook-1'
+      name: '{{name}}-release-name'
       namespace: argocd
+      labels:
+        app: any
+        cluster: '{{name}}'
+        owner: nobody
+        parent: release-name
     spec:
       project: default
       source:
