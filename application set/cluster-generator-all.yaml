@@ -3,48 +3,27 @@ kind: ApplicationSet
 metadata:
   name: guestbook-1
   namespace: argocd
-# spec:
-#   generators:
-#   - clusters: {}
-#   template:
-#     metadata:
-#       name: '{{name}}-release-name'
-#       namespace: argocd
-#       labels:
-#         app: any
-#         cluster: local-cluster
-#         owner: nobody
-#         parent: release-name
-  spec:
-    generators:
-    - clusters:
-        selector:
-          matchLabels:
-            stage: dev
-          matchExpressions:
-          - key: type
-            operator: In
-            values: ["none"]
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: '{{name}}-release-name'
+      namespace: testing
+      labels:
+        app: any
+        cluster: local-cluster
+        owner: nobody
+        parent: release-name
     spec:
       project: default
       source:
-        repoURL: https://github.com/wreed4/example-helm
+        repoURL: https://github.com/AditiNagar31/argocd-example-apps.git
         targetRevision: master
-        path: .
+        path: guestbook
       destination:
-        name: '{{name}}'
-        namespace: argocd
-    syncPolicy:
-      preserveResourcesOnDeletion: true
-    # spec:
-    #   project: default
-    #   source:
-    #     repoURL: https://github.com/AditiNagar31/argocd-example-apps.git
-    #     targetRevision: master
-    #     path: guestbook
-    #   destination:
-    #     server: '{{server}}'
-    #     namespace: guestbook-1
-    #   syncPolicy:
-    #      syncOptions:
-    #       - CreateNamespace=true
+        server: '{{server}}'
+        namespace: guestbook-1
+      syncPolicy:
+         syncOptions:
+          - CreateNamespace=true
